@@ -1,0 +1,15 @@
+{
+  "name": "FitFlex AI",
+  "short_name": "FitFlex",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#38bdf8",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ]
+}

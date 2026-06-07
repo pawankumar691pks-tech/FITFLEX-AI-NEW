@@ -1,0 +1,2946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>FitFlex AI Ultimate</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Arial;
+
+background:#0f172a;
+
+color:white;
+
+height:100vh;
+
+overflow:hidden;
+
+transition:1s;
+}
+
+.container{
+
+display:flex;
+
+height:100vh;
+}
+
+.sidebar{
+
+width:270px;
+
+background:#1e293b;
+
+padding:20px;
+
+overflow-y:auto;
+}
+
+.logo{
+    #profileCard{
+        #xpBar{
+
+width:100%;
+
+height:12px;
+
+background:#334155;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:8px;
+
+}
+
+#xpFill{
+
+height:100%;
+
+width:0%;
+
+background:#22c55e;
+
+transition:0.5s;
+
+}
+
+#xpText{
+
+margin-top:5px;
+
+font-size:12px;
+
+}
+
+background:#0f172a;
+
+padding:12px;
+
+border-radius:10px;
+
+margin-bottom:15px;
+
+line-height:1.8;
+
+font-size:14px;
+
+border:1px solid #38bdf8;
+
+}
+
+font-size:38px;
+
+font-weight:bold;
+
+color:#38bdf8;
+
+margin-bottom:20px;
+
+text-shadow: 0 0 10px #38bdf8;
+letter-spacing: 2px;
+font-weight: bold;
+}
+
+#clock,
+#status,
+#batteryPercent{
+
+font-size:18px;
+
+font-weight:bold;
+
+margin-bottom:12px;
+}
+
+#batteryContainer{
+
+margin-bottom:20px;
+}
+
+#batteryBar{
+
+width:100%;
+
+height:25px;
+
+background:#334155;
+
+border-radius:20px;
+
+overflow:hidden;
+}
+
+#batteryFill{
+
+height:100%;
+
+width:100%;
+
+background:#22c55e;
+
+transition:0.5s;
+}
+.button-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:8px;
+
+}
+.button-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:8px;
+
+}
+
+.sidebar button{
+
+display:block;
+
+width:100%;
+
+padding: 10px;
+
+margin-bottom:10px;
+
+border:none;
+
+border-radius:10px;
+
+background:#38bdf8;
+
+font-size:14px;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.main{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+}
+
+.chat-box{
+
+flex:1;
+
+padding:20px;
+
+overflow-y:auto;
+}
+
+.message{
+
+padding:15px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+max-width:70%;
+
+line-height:1.5;
+}
+
+.user{
+
+background:#38bdf8;
+
+color:black;
+
+margin-left:auto;
+}
+
+.ai{
+
+background:#1e293b;
+}
+
+.details{
+
+padding:15px;
+
+background:#111827;
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+}
+
+.details input{
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+width:150px;
+}
+
+.bottom{
+
+display:flex;
+
+gap:10px;
+
+padding:20px;
+
+background:#111827;
+}
+
+.bottom input{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+}
+
+.bottom button{
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+background:#38bdf8;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.complete-btn{
+
+margin-top:15px;
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+background:#22c55e;
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.loader{
+
+display:flex;
+
+gap:5px;
+
+margin-top:10px;
+}
+
+.loader span{
+
+width:10px;
+
+height:10px;
+
+background:white;
+
+border-radius:50%;
+
+animation:bounce 0.6s infinite alternate;
+}
+
+.loader span:nth-child(2){
+
+animation-delay:0.2s;
+}
+
+.loader span:nth-child(3){
+
+animation-delay:0.4s;
+}
+
+@keyframes bounce{
+
+from{
+
+transform:translateY(0);
+}
+
+to{
+
+transform:translateY(-8px);
+}
+}
+
+@media(max-width:768px){
+
+.container{
+
+flex-direction:column;
+}
+
+.sidebar{
+
+width: 100%;
+}
+
+.details{
+
+flex-direction:column;
+}
+
+.details input{
+
+width: 100%;
+}
+
+.bottom{
+
+flex-direction:column;
+}
+}
+#achievementPopup{
+
+position:fixed;
+
+top:20px;
+
+right:20px;
+
+background:#22c55e;
+
+padding:15px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+display:none;
+
+z-index:9999;
+
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.png">
+</head>
+
+
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+    <div class="button-grid">
+
+    </div>
+
+<div class="logo">
+FitFlex AI 💪
+</div>
+
+<div id="profileCard">
+
+👤 User<br>
+
+🏆 Level: <span id="levelCard">1</span><br>
+
+⭐ XP: <span id="xpCard">0</span><br>
+
+🔥 Streak: <span id="streakCard">0</span><br>
+
+💧 Water: <span id="waterCard">0</span>
+<br><br>
+
+<div id="xpBar">
+
+<div id="xpFill"></div>
+
+</div>
+
+<div id="xpText">
+
+0 / 100 XP
+
+</div>
+
+</div>
+
+<div id="clock">
+00:00:00
+</div>
+
+<div id="status">
+🟢 Online
+</div>
+
+<div id="batteryContainer">
+
+<div id="batteryBar">
+
+<div id="batteryFill">
+
+</div>
+
+</div>
+
+<div id="batteryPercent">
+
+🔋 Loading...
+
+</div>
+
+</div>
+
+<div class="button-grid">
+
+<button onclick="calculateBMI()">
+BMI 📊
+</button>
+
+<button onclick="calculateCalories()">
+Calories 🔥
+</button>
+
+<button onclick="generateWorkout()">
+Workout 💪
+</button>
+
+<button onclick="showProgress()">
+Progress 📈
+</button>
+
+<button onclick="showStreak()">
+Streak 🔥
+</button>
+
+<button onclick="waterReminder()">
+Water 💧
+</button>
+
+<button onclick="motivation()">
+Motivation 😎
+</button>
+
+<button onclick="absWorkout()">
+Abs 🔥
+</button>
+
+<button onclick="muscleDiet()">
+Muscle Diet 🥚
+</button>
+
+<button onclick="weightLossTips()">
+Weight Loss 🏃
+</button>
+
+<button onclick="weightGoal()">
+Weight Goal 🎯
+</button>
+
+<button onclick="fitnessChallenge()">
+30 Day Challenge 🏆
+</button>
+
+<button onclick="weeklyReport()">
+Weekly Report 📊
+</button>
+
+<button onclick="advancedDietPlan()">
+Advanced Diet 🍽️
+</button>
+
+<button onclick="bodyFatCalculator()">
+Body Fat % 🧮
+</button>
+
+<button onclick="fitnessScoreReport()">
+Fitness Score 🏅
+</button>
+
+<button onclick="downloadReport()">
+Download PDF 📄
+</button>
+
+<button onclick="fitnessTip()">
+Fitness Tip 💡
+</button>
+
+<button onclick="dailyChallenge()">
+Challenge 🏆
+</button>
+
+<button onclick="fitnessScore()">
+Fitness Score 🏆
+</button>
+
+<button onclick="showWorkouts()">
+Workouts 💪
+</button>
+
+<button onclick="showBadges()">
+Badges 🥇
+</button>
+
+<button onclick="dailyBonus()">
+Daily Bonus 🎁
+</button>
+
+<button onclick="aiDietPlan()">
+AI Diet Plan 🥗
+</button>
+
+<button onclick="showLevel()">
+Level 🏆
+</button>
+
+<button onclick="drinkWater()">
+Water Tracker 💧
+</button>
+
+<button onclick="dailyGoals()">
+Daily Goals 🎯
+</button>
+
+<button onclick="fitnessDashboard()">
+Fitness Dashboard 📊
+</button>
+
+<button onclick="showProfile()">
+Profile 👤
+</button>
+
+<button onclick="showBMIHistory()">
+BMI History 📈
+</button>
+
+<button onclick="showAchievements()">
+Achievements 🏆
+</button>
+
+<button onclick="showWorkoutCategories()">
+Workout Categories 🏋️
+</button>
+
+<button onclick="showWorkoutHistory()">
+Workout History 📅
+</button>
+
+<button onclick="aboutFitFlex()">
+About App ℹ️
+</button>
+
+<button onclick="toggleMusic()">
+Music 🎵
+</button>
+
+<button onclick="toggleTheme()">
+Theme 🌙
+</button>
+
+<button onclick="clearChat()">
+Clear Chat 🗑️
+</button>
+
+<button onclick="testVoice()">
+Voice 🔊
+</button>
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="chat-box"
+id="chatBox">
+
+<div class="message ai">
+
+Hello sir😎<br>
+Welcome to FitFlex AI 💪
+
+
+</div>
+
+</div>
+
+<div class="details">
+
+<input
+type="text"
+id="username"
+placeholder="your name"
+>
+
+<input
+type="number"
+id="weight"
+placeholder="Weight kg"
+>
+
+<input
+type="number"
+id="height"
+placeholder="Height cm"
+>
+
+<input
+type="number"
+id="age"
+placeholder="Age"
+>
+
+<input
+type="number"
+id="targetWeight"
+placeholder="Target Weight kg"
+>
+
+</div>
+
+<div class="bottom">
+
+<input
+type="text"
+id="userInput"
+placeholder="Ask anything..."
+>
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+<button onclick="startVoiceInput()">
+🎤
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let progress = Number(
+localStorage.getItem("progress")
+) || 0;
+let xp = Number(
+localStorage.getItem("xp")
+) || 0;
+
+let waterCount = Number(
+localStorage.getItem("waterCount")
+) || 0;
+
+let level = Number(
+localStorage.getItem("level")
+) || 1;
+
+let streak = Number(
+localStorage.getItem("streak")
+) || 0;
+
+
+let totalWorkouts = 0; 
+
+let musicPlaying = false;
+
+const workoutMusic = new Audio(
+"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+);
+
+let workoutHistory = JSON.parse(
+localStorage.getItem(
+"workoutHistory"
+)
+) || [];
+
+let bmiHistory = JSON.parse(
+localStorage.getItem(
+"bmiHistory"
+)
+) || [];
+
+let bonusClaimed = false;
+
+let darkMode = true;
+
+// SPEAK
+function speak(text){
+
+if(
+'speechSynthesis'
+in window
+){
+
+window.speechSynthesis.cancel();
+
+const speech =
+
+new SpeechSynthesisUtterance(
+text
+);
+
+speech.lang = "en-US";
+
+speech.rate = 0.9;
+
+speech.pitch = 1;
+
+speech.volume = 1;
+
+window.speechSynthesis.speak(
+speech
+);
+}
+}
+
+// REAL TIME GREETING
+window.onload = function(){
+
+const hour = new Date().getHours();
+
+let greeting = "";
+
+if(hour >= 5 && hour < 12){
+
+greeting =
+"Good Morning";
+}
+
+else if(hour >= 12 && hour < 17){
+
+greeting =
+"Good Afternoon";
+}
+
+else if(hour >= 17 && hour < 21){
+
+greeting =
+"Good Evening";
+}
+
+else{
+
+greeting =
+"Good Night";
+}
+console.log("Greeting code running");
+
+setTimeout(function(){
+
+console.log(greeting);
+
+speak(
+greeting +
+" welcome to FitFlex AI"
+);
+
+addAIMessage(
+greeting +
+" welcome to FitFlex AI"
+);
+setTimeout(function(){
+
+speak(
+greeting +
+" welcome to FitFlex AI"
+);
+
+},3000);
+
+addAIMessage(
+"😎 Welcome back! Ready for today's workout?"
+);
+
+},1500);
+
+const today = new Date()
+.toDateString();
+
+const lastLogin =
+localStorage.getItem(
+"lastLogin"
+);
+
+if(lastLogin !== today){
+
+xp += 10;
+
+localStorage.setItem(
+"xp",
+xp
+);
+
+localStorage.setItem(
+"lastLogin",
+today
+);
+
+setTimeout(function(){
+
+addAIMessage(
+"🎁 Daily Login Bonus +10 XP"
+);
+
+speak(
+"Daily login bonus awarded"
+);
+
+},3000);
+
+}
+updateProfileCard();
+};
+
+// ENTER SEND
+document
+.getElementById(
+"userInput"
+)
+
+.addEventListener(
+
+"keypress",
+
+function(event){
+
+if(event.key === "Enter"){
+
+sendMessage();
+}
+});
+
+// TEST VOICE
+function testVoice(){
+
+speak(
+"Voice is working in FitFlex AI"
++
+" If you can hear this, it's working perfectly!"
++
+" Try asking a question or giving a command to see it in action."
++
+" FitFlex AI is here to assist you with your fitness journey. Let's get moving and achieve those goals together!"
+);
+}
+
+// REAL CHATBOT
+async function sendMessage(){
+
+const input =
+
+document.getElementById(
+"userInput"
+);
+
+const message =
+input.value.trim();
+
+if(message === "")
+return;
+
+addUserMessage(message);
+
+input.value = "";
+
+const chatBox =
+
+document.getElementById(
+"chatBox"
+);
+
+chatBox.innerHTML += `
+
+<div
+class="message ai"
+id="typing">
+
+🤖 FitFlex AI typing...
+
+<div class="loader">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+</div>
+`;
+
+chatBox.scrollTop =
+chatBox.scrollHeight;
+
+try{
+
+const response =
+
+await fetch(
+
+"http://localhost:5000/chat",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json"
+},
+
+
+body:JSON.stringify({
+
+message:message
+})
+});
+
+const data =
+await response.json();
+
+document
+.getElementById(
+"typing"
+)
+.remove();
+
+addAIMessage(
+data.reply
+);
+}
+
+catch(error){
+
+document
+.getElementById(
+"typing"
+)
+.remove();
+
+addAIMessage(
+
+"❌ Server not running"
+);
+}
+}
+
+// USER MESSAGE
+function addUserMessage(text){
+
+const chatBox =
+
+document.getElementById(
+"chatBox"
+);
+
+chatBox.innerHTML += `
+
+<div class="message user">
+
+${text}
+
+</div>
+`;
+
+chatBox.scrollTop =
+chatBox.scrollHeight;
+}
+
+// AI MESSAGE
+function updateProfileCard(){
+
+document.getElementById("levelCard").innerText = level;
+
+document.getElementById("xpCard").innerText = xp;
+
+document.getElementById("streakCard").innerText = streak;
+
+document.getElementById("waterCard").innerText = waterCount;
+
+const xpNeeded = level * 100;
+
+const xpPercent =
+
+(xp / xpNeeded) * 100;
+
+document.getElementById(
+"xpFill"
+).style.width =
+
+xpPercent + "%";
+
+document.getElementById(
+"xpText"
+).innerText =
+
+xp + " / " + xpNeeded + " XP";
+}
+function showAchievement(text){
+
+const popup =
+document.getElementById(
+"achievementPopup"
+);
+
+popup.innerText = text;
+
+popup.style.display = "block";
+
+setTimeout(function(){
+
+popup.style.display = "none";
+
+},3000);
+
+}
+function addAIMessage(text){
+
+const chatBox =
+
+document.getElementById(
+"chatBox"
+);
+
+chatBox.innerHTML += `
+
+<div class="message ai">
+
+🤖 FitFlex AI:<br>${text}
+
+</div>
+`;
+
+speak(text);
+
+chatBox.scrollTop =
+chatBox.scrollHeight;
+}
+
+// BMI
+function calculateBMI(){
+
+const weight =
+document.getElementById(
+"weight"
+).value;
+
+const height =
+document.getElementById(
+"height"
+).value / 100;
+
+if(!weight || !height){
+
+alert(
+"Enter weight and height"
+);
+
+return;
+}
+
+const bmi =
+(weight / (height * height))
+.toFixed(1);
+
+bmiHistory.push(bmi);
+
+localStorage.setItem(
+
+"bmiHistory",
+
+JSON.stringify(
+bmiHistory
+)
+
+);
+
+addAIMessage(
+"📊 Your BMI is: " +
+bmi
+);
+}
+
+// CALORIES
+function calculateCalories(){
+
+const weight =
+document.getElementById(
+"weight"
+).value;
+
+const height =
+document.getElementById(
+"height"
+).value;
+
+const age =
+document.getElementById(
+"age"
+).value;
+
+if(!weight || !height || !age){
+
+alert(
+"Enter all details"
+);
+
+return;
+}
+
+const calories =
+
+(
+10 * weight +
+6.25 * height -
+5 * age + 5
+).toFixed(0);
+
+addAIMessage(
+"🔥 Daily Calories: " +
+calories
+);
+}
+
+// WORKOUT
+function generateWorkout(){
+
+addAIMessage(
+
+"💪 Today's Workout<br><br>"
+
++
+
+"🏃 Running - 10 mins<br>"
+
++
+
+"💪 Pushups - 20 reps<br>"
+
++
+
+"🦵 Squats - 20 reps<br>"
++
+"🧘‍♂️ Plank - 30 secs<br>"
++
+"🔥 Let's go!"
+);
+
+const chatBox =
+
+document.getElementById(
+"chatBox"
+);
+
+chatBox.innerHTML += `
+
+<button
+class="complete-btn"
+onclick="completeWorkout()">
+
+Complete Workout ✅
+
+</button>
+`;
+}
+
+// COMPLETE
+function completeWorkout(){
+
+progress += 10;
+
+streak += 1;
+updateProfileCard();
+
+totalWorkouts += 1;
+const today =
+
+new Date()
+.toLocaleDateString();
+
+workoutHistory.push(
+today
+);
+
+localStorage.setItem(
+
+"workoutHistory",
+
+JSON.stringify(
+workoutHistory
+)
+
+);
+xp += 20;
+updateProfileCard();
+
+if(xp >= level * 100){
+
+level++;
+
+addAIMessage(
+"🏆 Level Up! You reached Level " +
+level
+);
+
+showAchievement(
+"🏆 Level " + level + " Reached"
+);
+
+}
+
+localStorage.setItem(
+"xp",
+xp
+);
+
+localStorage.setItem(
+"level",
+level
+);
+localStorage.setItem(
+"progress",
+progress
+);
+
+localStorage.setItem(
+"streak",
+streak
+);
+
+localStorage.setItem(
+"totalWorkouts",
+totalWorkouts
+);
+
+addAIMessage(
+
+"🎉 Workout completed!<br><br>"
+
++
+
+"📈 Progress: " +
+progress +
+"%<br><br>"
+
++
+
+"🔥 Streak: " +
+streak
+);
+speak(
+"Congratulations. Workout completed successfully."
+);
+const audio = new Audio(
+"https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
+);
+
+audio.play();
+}
+// PROGRESS
+function showProgress(){
+
+addAIMessage(
+
+"📈 Current Progress: " +
+
+progress +
+
+"%"
+);
+
+addAIMessage(
+
+"📈 Progress: " +
+progress +
+"%"
+);
+}
+
+// STREAK
+function showStreak(){
+
+addAIMessage(
+
+"🔥 Current Streak: " +
+
+streak +
+
+" days"
+);
+
+
+addAIMessage(
+
+"🔥 Streak: " +
+streak
+);
+}
+
+// WATER
+function waterReminder(){
+
+const tips = [
+"💧 Drink more water in a day 4-5 litre",
+
+"🚰 Set reminders to stay hydrated",
+
+"🥤 Avoid sugary drinks",
+
+"🍉 Eat water-rich foods like fruits and veggies",
+
+"💡 Carry a water bottle with you",
+
+"⏰ Drink a glass of water every hour",
+
+"💪 Staying hydrated boosts energy and performance",
+
+"🚀 You got this!"
+
+];
+
+tips.forEach(function(tip,index){
+
+setTimeout(function(){
+
+addAIMessage(tip);
+
+},index * 1000);
+
+});
+
+}
+
+// MOTIVATION
+function motivation(){
+
+const tips = [
+
+"😎 No Pain No Gain",
+
+"💪 Push your limits",
+
+"🔥 Stay consistent",
+
+"🚀 You got this",
+
+"💡 Remember why you started",
+
+"🎯 Set clear goals",
+
+"📈 Track your progress",
+
+"🧘‍♂️ Don't forget to rest",
+
+"💪 Believe in yourself",
+
+"🔥 The only bad workout is the one you didn't do",
+
+"🚀 Let's crush those fitness goals together!"
+
+];
+
+tips.forEach(function(tip,index){
+
+setTimeout(function(){
+
+addAIMessage(tip);
+
+},index * 1000);
+
+});
+
+}
+
+// ABS
+function absWorkout(){
+
+const workouts = [
+
+"🔥 Crunches, Plank, Leg Raises",
+
+"🏋️ 3 sets of 15 reps each",
+
+"📈 Consistency is key",
+
+"🎯 Don't forget to engage your core",
+
+"⏱️ Rest for 30 seconds between sets",
+
+"💪 You got this!"
+
+];
+
+for(let i = 0; i < workouts.length; i++){
+
+setTimeout(function(){
+
+addAIMessage(workouts[i]);
+
+}, i * 1000);
+
+}
+
+}
+
+// DIET
+function muscleDiet(){
+
+const dietTips = [
+
+"🥚 Eggs, Chicken, Milk",
+
+"🍎 Fruits, Veggies",
+
+"💧 Stay hydrated",
+
+"💪 Protein is key",
+
+"🔥 Consistency matters",
+
+"🚀 You got this!"
+
+];
+
+dietTips.forEach(function(tip,index){
+
+setTimeout(function(){
+
+addAIMessage(tip);
+
+}, index * 1000);
+
+});
+
+}
+
+// LOSS
+function weightLossTips(){
+
+const tips = [
+
+"🏃 Daily cardio karo",
+
+"🥗 Healthy diet lo",
+
+"💧 Pani zyada piyo",
+
+"😴 Achha so jao",
+
+"🔥 Consistent raho",
+
+"💪 Push your limits",
+
+"🚀 You got this!"
+
+];
+
+tips.forEach(function(tip,index){
+
+setTimeout(function(){
+
+addAIMessage(tip);
+
+}, index * 1000);
+
+});
+
+}
+
+// FITNESS TIP
+function fitnessTip(){
+
+const tips = [
+
+"💡 Sleep 8 hours daily",
+
+"🍎 Eat more veggies",
+
+"💧 Stay hydrated",
+
+"🏋️‍♂️ Exercise regularly",
+
+"😎 Stay consistent",
+
+"🔥 Push your limits",
+
+"💪 Believe in yourself",
+
+"🎯 Set clear goals",
+
+"📈 Track your progress",
+
+"🧘‍♂️ Don't forget to rest",
+
+"🚀 You got this!"
+
+];
+
+tips.forEach(function(tip,index){
+
+setTimeout(function(){
+
+addAIMessage(tip);
+
+}, index * 1000);
+
+});
+
+}
+
+// CHALLENGE
+function dailyChallenge(){
+
+addAIMessage(
+
+"🏆 Complete 20 pushups"
++
+" and 30 squats today!"
++
+" Let's crush this challenge together"
+
+);
+}
+
+// FITNESS SCORE
+function fitnessScore(){
+
+const score =
+
+progress +
+streak * 5;
+
+addAIMessage(
+
+"🏆 Fitness Score: " +
+score
+);
+}
+
+// WORKOUTS
+function showWorkouts(){
+
+addAIMessage(
+
+"💪 Total workouts: " +
+totalWorkouts
+);
+}
+
+// BONUS
+function dailyBonus(){
+
+if(bonusClaimed){
+
+addAIMessage(
+
+"🎁 Bonus already claimed"
+);
+
+return;
+}
+
+progress += 5;
+
+bonusClaimed = true;
+
+addAIMessage(
+
+"🎉 Bonus Claimed +5"
+);
+}
+
+// CLEAR
+function clearChat(){
+
+document.getElementById(
+"chatBox"
+).innerHTML =
+
+`
+
+<div class="message ai">
+
+Chat cleared 😎
+
+</div>
+`;
+}
+function showWorkoutCategories(){
+
+addAIMessage(
+"🏋️ Workout Categories"
+);
+
+setTimeout(()=>{
+addAIMessage("💪 Chest Workout");
+},1000);
+
+setTimeout(()=>{
+addAIMessage("🔥 Abs Workout");
+},2000);
+
+setTimeout(()=>{
+addAIMessage("🦵 Leg Workout");
+},3000);
+
+setTimeout(()=>{
+addAIMessage("🏋️ Shoulder Workout");
+},4000);
+
+setTimeout(()=>{
+addAIMessage("🏠 Home Workout");
+},5000);
+
+}
+function showAchievements(){
+
+let achievements = [];
+
+if(totalWorkouts >= 1){
+
+achievements.push(
+"🏅 First Workout Completed"
+);
+}
+
+if(streak >= 7){
+
+achievements.push(
+"🔥 7 Day Streak Master"
+);
+}
+
+if(waterCount >= 8){
+
+achievements.push(
+"💧 Water Master"
+);
+}
+
+if(level >= 5){
+
+achievements.push(
+"🏆 Fitness Warrior"
+);
+}
+
+if(level >= 10){
+
+achievements.push(
+"👑 Fitness Legend"
+);
+}
+
+if(achievements.length === 0){
+
+addAIMessage(
+"😎 No achievements unlocked yet. Keep working!"
+);
+
+return;
+}
+
+achievements.forEach(function(item,index){
+
+setTimeout(function(){
+
+addAIMessage(item);
+
+}, index * 1000);
+
+});
+
+}
+function toggleMusic(){
+
+if(!musicPlaying){
+
+workoutMusic.play();
+
+musicPlaying = true;
+
+addAIMessage(
+"🎵 Workout Music Started"
+);
+
+}
+
+else{
+
+workoutMusic.pause();
+
+musicPlaying = false;
+
+addAIMessage(
+"⏸️ Workout Music Stopped"
+);
+
+}
+
+}
+function showWorkoutHistory(){
+
+if(
+workoutHistory.length === 0
+){
+
+addAIMessage(
+"📅 No workout history yet"
+);
+
+return;
+}
+
+addAIMessage(
+"📅 Workout History"
+);
+
+workoutHistory.forEach(
+
+function(day,index){
+
+setTimeout(function(){
+
+addAIMessage(
+"✅ " + day
+);
+
+},index * 1000);
+
+}
+
+);
+
+}
+function showBadges(){
+
+let badges = [];
+
+if(level >= 1){
+
+badges.push(
+"🥉 Bronze Athlete"
+);
+}
+
+if(level >= 5){
+
+badges.push(
+"🥈 Silver Athlete"
+);
+}
+
+if(level >= 10){
+
+badges.push(
+"🥇 Gold Athlete"
+);
+}
+
+if(level >= 20){
+
+badges.push(
+"👑 Elite FitFlex Legend"
+);
+}
+
+if(badges.length === 0){
+
+addAIMessage(
+"😎 No badges yet. Keep training!"
+);
+
+return;
+}
+
+badges.forEach(function(badge,index){
+
+setTimeout(function(){
+
+addAIMessage(badge);
+
+},index * 1000);
+
+});
+
+}
+function showBMIHistory(){
+
+if(
+bmiHistory.length === 0
+){
+
+addAIMessage(
+"📈 No BMI History Yet"
+);
+
+return;
+}
+
+addAIMessage(
+"📈 BMI History"
+);
+
+bmiHistory.forEach(
+
+function(item,index){
+
+setTimeout(function(){
+
+addAIMessage(
+"📊 BMI: " + item
+);
+
+}, index * 1000);
+
+}
+
+);
+
+}
+function downloadReport(){
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF();
+
+const username =
+document.getElementById(
+"username"
+).value || "User";
+
+doc.text(
+"FITFLEX AI REPORT",
+20,
+20
+);
+
+doc.text(
+"Name: " + username,
+20,
+40
+);
+
+doc.text(
+"Progress: " + progress + "%",
+20,
+50
+);
+
+doc.text(
+"Streak: " + streak,
+20,
+60
+);
+
+doc.text(
+"XP: " + xp,
+20,
+70
+);
+
+doc.text(
+"Level: " + level,
+20,
+80
+);
+
+doc.text(
+"Water: " + waterCount,
+20,
+90
+);
+
+doc.text(
+"Workouts: " + totalWorkouts,
+20,
+100
+);
+
+const weight = Number(
+document.getElementById(
+"weight"
+).value
+) || 0;
+
+const height = Number(
+document.getElementById(
+"height"
+).value
+) || 0;
+
+const age = Number(
+document.getElementById(
+"age"
+).value
+) || 0;
+
+let bmi = 0;
+let bodyFat = 0;
+
+if(weight && height){
+
+bmi = (
+weight /
+((height/100)*(height/100))
+).toFixed(1);
+
+bodyFat = (
+(1.20 * bmi) +
+(0.23 * age) -
+16.2
+).toFixed(1);
+}
+
+const score =
+
+(progress * 2) +
+(streak * 5) +
+(level * 20) +
+(waterCount * 2) +
+(totalWorkouts * 10);
+
+doc.text(
+"BMI: " + bmi,
+20,
+110
+);
+
+doc.text(
+"Body Fat: " + bodyFat + "%",
+20,
+120
+);
+
+doc.text(
+"Rank: " + getRank(),
+20,
+130
+);
+
+doc.text(
+"Fitness Score: " + score,
+20,
+140
+);
+
+doc.save(
+"FitFlex_Report.pdf"
+);
+
+addAIMessage(
+"📄 PDF Downloaded Successfully"
+);
+
+}
+function fitnessScoreReport(){
+
+const score =
+
+(progress * 2) +
+
+(streak * 5) +
+
+(level * 20) +
+
+(waterCount * 2) +
+
+(totalWorkouts * 10);
+
+let status = "";
+
+if(score < 100){
+
+status = "😎 Beginner";
+}
+
+else if(score < 300){
+
+status = "💪 Active";
+}
+
+else if(score < 600){
+
+status = "🏆 Athlete";
+}
+
+else{
+
+status = "👑 Fitness Legend";
+}
+
+addAIMessage(
+
+"🏅 FITNESS SCORE REPORT" +
+
+"<br><br>⭐ Score: " + score +
+
+"<br>🎖️ Status: " + status
+
+);
+
+}
+function bodyFatCalculator(){
+
+const weight = Number(
+document.getElementById(
+"weight"
+).value
+);
+
+const height = Number(
+document.getElementById(
+"height"
+).value
+);
+
+const age = Number(
+document.getElementById(
+"age"
+).value
+);
+
+if(!weight || !height || !age){
+
+addAIMessage(
+"⚠️ Enter Weight, Height and Age"
+);
+
+return;
+}
+
+const bmi =
+
+weight /
+((height/100) * (height/100));
+
+const bodyFat =
+
+(
+(1.20 * bmi) +
+(0.23 * age) -
+16.2
+).toFixed(1);
+
+addAIMessage(
+
+"🧮 BODY FAT REPORT" +
+
+"<br><br>📊 BMI: " +
+bmi.toFixed(1) +
+
+"<br>🔥 Estimated Body Fat: " +
+bodyFat + "%"
+
+);
+
+}
+function advancedDietPlan(){
+
+const weight = Number(
+document.getElementById(
+"weight"
+).value
+);
+
+const targetWeight = Number(
+document.getElementById(
+"targetWeight"
+).value
+);
+
+if(!weight || !targetWeight){
+
+addAIMessage(
+"⚠️ Enter Weight and Target Weight"
+);
+
+return;
+}
+
+if(targetWeight > weight){
+
+addAIMessage(
+"💪 Muscle Gain Diet Plan"
+);
+
+setTimeout(()=>{
+addAIMessage(
+"🥚 Breakfast: Eggs + Milk"
+);
+},1000);
+
+setTimeout(()=>{
+addAIMessage(
+"🍗 Lunch: Rice + Chicken"
+);
+},2000);
+
+setTimeout(()=>{
+addAIMessage(
+"🥛 Evening: Banana Shake"
+);
+},3000);
+
+setTimeout(()=>{
+addAIMessage(
+"🍖 Dinner: Chicken + Roti"
+);
+},4000);
+
+}
+
+else{
+
+addAIMessage(
+"🔥 Fat Loss Diet Plan"
+);
+
+setTimeout(()=>{
+addAIMessage(
+"🥣 Breakfast: Oats + Fruits"
+);
+},1000);
+
+setTimeout(()=>{
+addAIMessage(
+"🥗 Lunch: Salad + Paneer"
+);
+},2000);
+
+setTimeout(()=>{
+addAIMessage(
+"🍎 Evening: Apple"
+);
+},3000);
+
+setTimeout(()=>{
+addAIMessage(
+"🥦 Dinner: Vegetables + Protein"
+);
+},4000);
+
+}
+
+}
+function weeklyReport(){
+
+addAIMessage(
+
+"📊 WEEKLY FITNESS REPORT" +
+
+"<br><br>💪 Total Workouts: " +
+totalWorkouts +
+
+"<br>🔥 Streak: " +
+streak +
+
+"<br>⭐ XP: " +
+xp +
+
+"<br>🏆 Level: " +
+level +
+
+"<br>🎖️ Rank: " +
+getRank() +
+
+"<br>💧 Water Glasses: " +
+waterCount
+
+);
+
+}
+function fitnessChallenge(){
+
+const challenges = [
+
+"🏆 Day 1 - 20 Pushups",
+
+"🏆 Day 2 - 30 Squats",
+
+"🏆 Day 3 - 1 KM Walk",
+
+"🏆 Day 4 - 25 Crunches",
+
+"🏆 Day 5 - 2 Litre Water Goal",
+
+"🏆 Day 6 - 15 Burpees",
+
+"🏆 Day 7 - 30 Minute Workout"
+
+];
+
+addAIMessage(
+"🔥 30 Day Fitness Challenge"
+);
+
+challenges.forEach(function(item,index){
+
+setTimeout(function(){
+
+addAIMessage(item);
+
+},index * 1000);
+
+});
+
+}
+function weightGoal(){
+
+const currentWeight = Number(
+document.getElementById(
+"weight"
+).value
+);
+
+const targetWeight = Number(
+document.getElementById(
+"targetWeight"
+).value
+);
+
+if(!currentWeight || !targetWeight){
+
+addAIMessage(
+"⚠️ Enter current and target weight"
+);
+
+return;
+}
+
+const difference = Math.abs(
+currentWeight - targetWeight
+);
+
+addAIMessage(
+
+"🎯 WEIGHT GOAL" +
+
+"<br><br>⚖️ Current Weight: " +
+currentWeight + " kg" +
+
+"<br>🏆 Target Weight: " +
+targetWeight + " kg" +
+
+"<br>📉 Remaining: " +
+difference + " kg"
+
+);
+
+}
+function aboutFitFlex(){
+
+addAIMessage(
+
+"💪 FitFlex AI Version 1.0" +
+
+"<br><br>🤖 AI Chatbot" +
+
+"<br>📊 BMI Calculator" +
+
+"<br>🔥 Calories Calculator" +
+
+"<br>🏆 XP & Level System" +
+
+"<br>💧 Water Tracker"
+
+);
+
+}
+function showProfile(){
+
+const username =
+document.getElementById(
+"username"
+).value || "User";
+
+const weight =
+document.getElementById(
+"weight"
+).value || "Not Set";
+
+const height =
+document.getElementById(
+"height"
+).value || "Not Set";
+
+const age =
+document.getElementById(
+"age"
+).value || "Not Set";
+
+addAIMessage(
+
+"👤 PROFILE CARD" +
+
+"<br><br>🧑 Name: " + username +
+
+"<br>⚖️ Weight: " + weight + " kg" +
+
+"<br>📏 Height: " + height + " cm" +
+
+"<br>🎂 Age: " + age +
+
+"<br>🏆 Level: " + level +
+
+"<br>⭐ XP: " + xp +
+
+"<br>🔥 Streak: " + streak
+
+);
+
+}
+function fitnessDashboard(){
+
+const username =
+
+document.getElementById(
+"username"
+).value || "User";
+
+addAIMessage(
+
+"📊 FITNESS DASHBOARD" +
+
+"<br><br>👤 Name: " + username +
+
+"<br>📈 Progress: " + progress + "%" +
+
+"<br>🔥 Streak: " + streak +
+
+"<br>⭐ XP: " + xp +
+
+"<br>🏆 Level: " + level +
+
+"<br>🎖️ Rank: " + getRank() +
+
+"<br>💧 Water: " + waterCount + "/8" +
+
+"<br>💪 Workouts: " + totalWorkouts
+
+);
+
+}
+function dailyGoals(){
+
+addAIMessage(
+
+"🎯 DAILY GOALS" +
+
+"<br><br>📈 Progress: " + progress + "%" +
+
+"<br>🔥 Streak: " + streak +
+
+"<br>🏆 Level: " + level +
+
+"<br>⭐ XP: " + xp +
+
+"<br>💧 Water: " + waterCount + "/8 Glasses" +
+
+"<br>💪 Workouts: " + totalWorkouts
+
+);
+
+}
+function drinkWater(){
+
+waterCount++;
+updateProfileCard();
+
+localStorage.setItem(
+"waterCount",
+waterCount
+);
+
+addAIMessage(
+
+"💧 Glass Water Added" +
+
+"<br><br>Today's Water: " +
+
+waterCount +
+
+" Glasses"
+
+);
+
+if(waterCount === 8){
+    showAchievement(
+"💧 Water Goal Completed"
+);
+
+addAIMessage(
+
+"🏆 Daily Water Goal Completed!"
+);
+
+}
+
+}
+function getRank(){
+
+if(level <= 2){
+
+return "😎 Beginner";
+}
+
+else if(level <= 5){
+
+return "💪 Fitness Rookie";
+}
+
+else if(level <= 10){
+
+return "🏆 Fitness Warrior";
+}
+
+else{
+
+return "👑 Fitness Legend";
+}
+
+}
+function showLevel(){
+
+addAIMessage(
+
+"🏆 Level: " +
+level
++
+"<br>🎖️ Rank: " +
+getRank()
++
+
+"<br>⭐ XP: " +
+xp +
+
+"/" +
+(level * 100)
+
+);
+
+}
+function aiDietPlan(){
+
+const weight =
+document.getElementById(
+"weight"
+).value;
+
+if(!weight){
+
+addAIMessage(
+"⚠️ Pehle weight enter karo"
+);
+
+return;
+}
+
+if(weight < 60){
+
+addAIMessage(
+"🥗 Weight Gain Diet Selected"
+);
+
+setTimeout(()=>{
+addAIMessage("🥚 Breakfast: 4 Eggs + Milk");
+},1000);
+
+setTimeout(()=>{
+addAIMessage("🍗 Lunch: Rice + Chicken");
+},2000);
+
+setTimeout(()=>{
+addAIMessage("🥛 Evening: Banana Shake");
+},3000);
+
+setTimeout(()=>{
+addAIMessage("🍖 Dinner: Chicken + Roti");
+},4000);
+
+}
+
+else{
+
+addAIMessage(
+"🔥 Fat Loss Diet Selected"
+);
+
+setTimeout(()=>{
+addAIMessage("🥣 Breakfast: Oats + Fruits");
+},1000);
+
+setTimeout(()=>{
+addAIMessage("🥗 Lunch: Salad + Paneer");
+},2000);
+
+setTimeout(()=>{
+addAIMessage("🍎 Evening: Apple");
+},3000);
+
+setTimeout(()=>{
+addAIMessage("🥦 Dinner: Veggies + Protein");
+},4000);
+
+}
+
+}
+
+// THEME
+function toggleTheme(){
+
+if(darkMode){
+
+document.body.style.background =
+"white";
+
+document.body.style.color =
+"black";
+
+darkMode = false;
+}
+
+else{
+
+document.body.style.background =
+"#0f172a";
+
+document.body.style.color =
+"white";
+
+darkMode = true;
+}
+}
+
+// CLOCK
+setInterval(function(){
+
+const now =
+new Date();
+
+document.getElementById(
+"clock"
+).innerText =
+
+now.toLocaleTimeString();
+
+},1000);
+
+// STATUS
+function updateStatus(){
+
+const status =
+document.getElementById(
+"status"
+);
+
+if(navigator.onLine){
+
+status.innerHTML =
+"🟢 Online";
+}
+
+else{
+
+status.innerHTML =
+"🔴 Offline";
+}
+}
+
+window.addEventListener(
+"online",
+updateStatus
+);
+
+window.addEventListener(
+"offline",
+updateStatus
+);
+
+updateStatus();
+
+// REAL BATTERY
+if('getBattery' in navigator){
+
+navigator.getBattery()
+
+.then(function(battery){
+
+function updateBattery(){
+
+const level =
+
+Math.floor(
+battery.level * 100
+);
+
+const charging =
+
+battery.charging ?
+
+"⚡ Charging"
+
+:
+
+"🔋 Not Charging";
+
+document.getElementById(
+"batteryFill"
+).style.width =
+
+level + "%";
+
+document.getElementById(
+"batteryPercent"
+).innerHTML =
+
+"🔋 " +
+level +
+"% - " +
+charging;
+
+if(level <= 20){
+
+document.getElementById(
+"batteryFill"
+).style.background =
+"red";
+}
+
+else{
+
+document.getElementById(
+"batteryFill"
+).style.background =
+"#22c55e";
+}
+}
+
+updateBattery();
+
+battery.addEventListener(
+"levelchange",
+updateBattery
+);
+
+battery.addEventListener(
+"chargingchange",
+updateBattery
+);
+});
+}
+
+// AUTO BACKGROUND
+const bgColors = [
+
+"#0f172a",
+
+"#1e1b4b",
+
+"#18181b",
+
+"#172554",
+
+"#14532d"
+];
+
+let bgIndex = 0;
+
+setInterval(function(){
+
+document.body.style.background =
+
+bgColors[bgIndex];
+
+bgIndex++;
+
+if(bgIndex >=
+bgColors.length){
+
+bgIndex = 0;
+}
+
+},5000);
+
+// VOICE INPUT
+const recognition =
+
+new(
+window.SpeechRecognition ||
+
+window.webkitSpeechRecognition
+)();
+
+recognition.lang =
+"en-US";
+
+function startVoiceInput(){
+
+recognition.start();
+}
+
+recognition.onresult =
+function(event){
+
+const text =
+
+event.results[0][0]
+.transcript;
+
+document.getElementById(
+"userInput"
+).value = text;
+
+sendMessage();
+};
+const usernameInput =
+
+document.getElementById(
+"username"
+);
+
+document.getElementById("weight").value =
+localStorage.getItem("weight") || "";
+
+document.getElementById("height").value =
+localStorage.getItem("height") || "";
+
+document.getElementById("age").value =
+localStorage.getItem("age") || "";
+
+document.getElementById("targetWeight").value =
+localStorage.getItem("targetWeight") || "";
+
+usernameInput.value =
+
+localStorage.getItem(
+"username"
+) || "";
+
+usernameInput.addEventListener(
+    "input",
+    function(){
+        localStorage.setItem("username", this.value);
+    }
+);
+document.getElementById("weight")
+.addEventListener("input", function(){ 
+
+localStorage.setItem(
+"weight",
+this.value
+);
+
+});
+
+document.getElementById("height")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"height",
+this.value
+);
+
+});
+
+document.getElementById("age")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"age",
+this.value
+);
+
+});
+
+document.getElementById("targetWeight")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"targetWeight",
+this.value
+);
+
+});
+document.getElementById("username")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"username",
+this.value
+);
+
+});
+document.getElementById("username")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"username",
+this.value
+);
+
+});
+document.getElementById("weight")
+.addEventListener("input", function(){ 
+
+localStorage.setItem(
+"weight",
+this.value
+);
+
+});
+document.getElementById("height")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"height",
+this.value
+);
+
+});
+document.getElementById("age")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"age",
+this.value
+);
+
+});
+document.getElementById("targetWeight")
+.addEventListener("input", function(){
+
+localStorage.setItem(
+"targetWeight",
+this.value
+);
+
+});
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register(
+"sw.js"
+);
+
+}
+
+</script>
+<div id="achievementPopup">
+
+🏆 Achievement Unlocked
+
+</div>
+
+</body>
+
+</html>
